@@ -1,0 +1,16 @@
+dataset:
+  type: Directory
+  path: /m100_work/account_name/claire-covid/datasets/final3_BB
+epochs: 50
+k_folds: 5
+labels:
+  type: File
+  path: /m100_work/account_name/claire-covid/datasets/labels_covid19_posi.tsv
+learning_rate: [0.001, 0.0001, 0.00001]
+lr_step_size: [10, 15, 20]
+model_type: DenseNetModel
+model_layers: [121, 161, 169, 201]
+weight_decay: [0.0005, 0.0001, 0.00005]
+weights_dir:
+  type: Directory
+  path: /m100_work/account_name/claire-covid/weights

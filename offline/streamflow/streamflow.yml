@@ -1,0 +1,20 @@
+#!/usr/bin/env streamflow
+version: v1.0
+workflows:
+  master:
+    type: cwl
+    config:
+      file: cwl/main.cwl
+      settings: cwl/config.yml
+    bindings:
+      - step: /get-subjects/run/scatter-archives/run/scatter-subjects/run/preprocess/run
+        target:
+          model: preproc-singularity
+models:
+  preproc-singularity:
+    type: singularity
+    config:
+      image: /path/to/claire-covid-preprocessing.sif
+      nv: true
+      replicas: 8
+  

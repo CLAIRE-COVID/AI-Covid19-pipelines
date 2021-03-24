@@ -1,0 +1,34 @@
+#!/usr/bin/env streamflow
+version: v1.0
+workflows:
+  master:
+    type: cwl
+    config:
+      file: cwl/main.cwl
+      settings: cwl/config.yml
+    bindings:
+      - step: /grid-search/run/train-fold/run/train/run
+        target:
+          model: slurm-cineca
+        workdir: /m100_work/account_name/claire-covid/streamflow
+      - step: /grid-search/run/train-fold/run/metrics/run
+        target:
+          model: singularity
+      - step: /grid-search/run/fold-metrics/run
+        target:
+          model: singularity
+models:
+  singularity:
+    type: singularity
+    config:
+      image: /path/to/claire-covid.sif
+      nv: true
+      replicas: 8
+  slurm-cineca:
+    type: slurm
+    config:
+      file: environment/cineca/slurm_template.jinja2
+      hostname: login.m100.cineca.it
+      maxConcurrentJobs: 60
+      sshKey: /path/to/ssh/key
+      username: cineca-username
