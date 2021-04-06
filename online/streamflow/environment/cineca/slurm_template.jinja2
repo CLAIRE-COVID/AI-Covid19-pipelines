@@ -13,4 +13,4 @@
 # Load modules
 module load singularity
 
-{{ streamflow_command }}
+"singularity", "exec", "--bind", "/m100_work:/m100_work", "--nv", "/path/to/claire-covid.sif" {{ streamflow_command }}

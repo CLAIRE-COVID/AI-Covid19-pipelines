@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.2
 class: CommandLineTool
-baseCommand: ["singularity", "exec", "--bind", "/m100_work:/m100_work", "--nv", "/path/to/claire-covid.sif", "python", "/opt/claire-covid/nnframework/main.py"]
+baseCommand: ["python", "/opt/claire-covid/nnframework/main.py"]
 arguments:
   - position: 9
     prefix: --name
